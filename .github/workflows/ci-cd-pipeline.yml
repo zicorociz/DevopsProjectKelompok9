@@ -10,28 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout kode dari repositori
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Node.js (gunakan versi 14 atau lebih baru)
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Gantilah dengan versi lebih baru jika perlu
+          node-version: '16'  # Gunakan Node.js 16.x atau lebih baru
 
-      # Install dependencies
       - name: Install dependencies
         run: |
           npm install
 
-      # Install Vercel CLI via npm (pastikan sudah terinstal)
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      # Deploy aplikasi ke Vercel
       - name: Deploy to Vercel
         run: |
           vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm --prod --scope zicorociz --project-id ${{ secrets.VERCEL_PROJECT_ID }}
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Menyediakan token API untuk autentikasi
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
