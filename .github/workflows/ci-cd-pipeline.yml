@@ -32,6 +32,6 @@ jobs:
       # Men-deploy aplikasi ke Vercel
       - name: Deploy to Vercel
         run: |
-          vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm --prod --scope <your-vercel-username-or-team> --project-id ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm --prod --scope zicorociz --project-id ${{ secrets.VERCEL_PROJECT_ID }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Menyediakan token API untuk autentikasi dengan Vercel
