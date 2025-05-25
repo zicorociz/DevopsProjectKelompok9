@@ -1,0 +1,28 @@
+ 
+ button{ 
+  
+    transition: all 0.3s !important;   
+ }
+ 
+
+  textarea{
+    resize: none; 
+  }
+
+  table {
+   border-collapse: collapse; 
+ }
+th, td {
+   padding: 8px;
+   border: 1px solid #ddd;
+}
+th {
+   text-align: left;
+   background-color: #f1f1f1;
+}
+.form-details{
+   background-color: #f1f1f1;
+   box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.5);
+   border-radius: 1%;
+   
+}

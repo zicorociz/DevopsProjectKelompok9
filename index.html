@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CRUD</title>
+        <link rel="stylesheet" href="./CSS/bootstrap.min.css" />
+        <link rel="stylesheet" href="./CSS/style.css" />
+    </head>
+    <body>
+        <div class="container py-4 bg-prim ary">
+            <div class="w-75 mb-4 form-details p-5 mx-auto ">
+                <h2>Product Mangment System</h2>
+                <div class="form-group mb-2">
+                    <label for="productName" class="mb-2">Product Name </label>
+                    <input type="text " class="form-control" id="productName" />
+                </div>
+                <div class="form-group mb-2">
+                    <label for="productPrice" class="mb-2">Product Price </label>
+                    <input type="text " class="form-control" id="productPrice" />
+                </div>
+                <div class="form-group mb-2">
+                    <label for="productCategory" class="mb-2">Product Category </label>
+                    <input type="text " class="form-control" id="productCategory" />
+                </div>
+                <div class="form-group mb-2">
+                    <label for="productDescription" class="mb-2">Product Description </label>
+                    <textarea class="form-control" id="productDescription"></textarea>
+                </div>
+
+                <button class="btn btn-outline-info" onclick="getProduct()" id="myButton">Add Product</button>
+            </div>
+
+            <div class="form-group mb-5 w-75 mx-auto">
+                <h4>Search</h4>
+                <input oninput="searchProduct()" type="search" class="form-control" id="searchInput" />
+            </div>
+
+            <div class="table-responsive w-75 mx-auto">
+                <table class="table">
+                    <thead>
+                        <th>Index</th>
+                        <th>productName</th>
+                        <th>productPrice</th>
+                        <th>productCategory</th>
+                        <th>productDescription</th>
+                        <th class="ps-2">Update</th>
+                        <th class="ps-2">Delete</th>
+                    </thead>
+                    <tbody id="myBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="./JS/javascript.js"></script>
+    </body>
+</html>
