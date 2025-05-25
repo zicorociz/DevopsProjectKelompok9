@@ -3,7 +3,7 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main  # Gantilah dengan nama branch utama yang kamu gunakan
+      - main
 
 jobs:
   vercel-deploy:
@@ -14,24 +14,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Node.js (misalnya menggunakan versi 14)
+      # Set up Node.js (gunakan versi 14 atau lebih baru)
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '14'  # Gantilah dengan versi lebih baru jika perlu
 
-      # Instal dependencies (jika menggunakan npm atau yarn)
+      # Install dependencies
       - name: Install dependencies
         run: |
-          npm install  # Gunakan yarn jika menggunakan yarn
+          npm install
 
-      # Install Vercel CLI secara langsung dari npm
+      # Install Vercel CLI via npm (pastikan sudah terinstal)
       - name: Install Vercel CLI
         run: npm install -g vercel
 
-      # Men-deploy aplikasi ke Vercel
+      # Deploy aplikasi ke Vercel
       - name: Deploy to Vercel
         run: |
           vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm --prod --scope zicorociz --project-id ${{ secrets.VERCEL_PROJECT_ID }}
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Menyediakan token API untuk autentikasi dengan Vercel
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Menyediakan token API untuk autentikasi
