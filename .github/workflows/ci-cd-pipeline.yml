@@ -3,7 +3,7 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main  # Gantilah dengan nama branch utama yang kamu gunakand
+      - main  # Gantilah dengan nama branch utama yang kamu gunakan
 
 jobs:
   vercel-deploy:
@@ -25,12 +25,13 @@ jobs:
         run: |
           npm install  # Gunakan yarn jika menggunakan yarn
 
+      # Install Vercel CLI secara langsung dari npm
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
       # Men-deploy aplikasi ke Vercel
       - name: Deploy to Vercel
         run: |
-          curl -fsSL https://vercel.com/download -o vercel-cli.zip
-          unzip vercel-cli.zip
-          sudo mv vercel /usr/local/bin
           vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm --prod --scope <your-vercel-username-or-team> --project-id ${{ secrets.VERCEL_PROJECT_ID }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Menyediakan token API untuk autentikasi dengan Vercel
