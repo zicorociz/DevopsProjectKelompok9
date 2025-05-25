@@ -1,50 +1,36 @@
-name: CI/CD Pipeline
+name: Deploy to Vercel
 
-# Trigger action ketika ada push ke branch `main` atau ketika ada pull request
 on:
   push:
     branches:
-      - main  # Atau master jika itu adalah branch utama
-  pull_request:
-    branches:
-      - main  # Atau master jika itu adalah branch utama
+      - main  # Gantilah dengan nama branch utama yang kamu gunakan
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Menjalankan pipeline di mesin Ubuntu terbaru
+  vercel-deploy:
+    runs-on: ubuntu-latest
 
     steps:
-      # Checkout kode
+      # Checkout kode dari repositori
       - name: Checkout code
         uses: actions/checkout@v2
-        
-      # Setup Node.js (karena proyek menggunakan Node.js, jika menggunakan teknologi lain seperti Python atau PHP, sesuaikan dengan environment yang diperlukan)
-      - name: Setup Node.js
+
+      # Set up Node.js (misalnya menggunakan versi 14)
+      - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Tentukan versi Node.js yang digunakan
+          node-version: '14'
 
-      # Install dependensi proyek
+      # Instal dependencies (jika menggunakan npm atau yarn)
       - name: Install dependencies
-        run: npm install  # Jika menggunakan npm, jika menggunakan yarn, ganti dengan `yarn install`
-
-      # Menjalankan tes aplikasi
-      - name: Run tests
-        run: npm test  # Pastikan proyek sudah memiliki pengujian, jika tidak ganti dengan perintah yang relevan
-
-      # Membangun aplikasi jika perlu (misalnya jika menggunakan React, Angular, atau proyek yang memerlukan build)
-      - name: Build project
-        run: npm run build  # Sesuaikan dengan perintah build aplikasi kamu
-
-      # Deploy aplikasi ke server/hosting (Heroku, DigitalOcean, AWS, dll.)
-      - name: Deploy to Production
-        if: github.ref == 'refs/heads/main'  # Hanya jalankan deploy jika ada perubahan di branch main
         run: |
-          echo "Deploying to production server..."
-          # Menambahkan perintah untuk deploy, misalnya deploy ke server dengan SSH, atau menghubungkan ke platform seperti Heroku
-          # Contoh untuk Heroku:
-          # git remote add heroku https://git.heroku.com/your-app-name.git
-          # git push heroku main
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}  # Pastikan kamu sudah menyimpan key di Secrets
+          npm install  # Gunakan yarn jika menggunakan yarn
 
+      # Men-deploy aplikasi ke Vercel
+      - name: Deploy to Vercel
+        run: |
+          curl -fsSL https://vercel.com/download -o vercel-cli.zip
+          unzip vercel-cli.zip
+          sudo mv vercel /usr/local/bin
+          vercel --token ${{ secrets.VERCEL_TOKEN }} --confirm --prod --scope <your-vercel-username-or-team> --project-id ${{ secrets.VERCEL_PROJECT_ID }}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Menyediakan token API untuk autentikasi dengan Vercel
