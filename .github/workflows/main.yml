@@ -20,6 +20,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization=Zikrul Khalis
+            -Dsonar.organization=zicorociz
             -Dsonar.projectKey=zicorociz_DevopsProjectKelompok9
             -Dsonar.python.coverage.reportPaths=coverage.xml
