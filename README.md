@@ -1,4 +1,4 @@
-# Product Management System
+# Hotel Management System
 
 This is a simple CRUD (Create, Read, Update, Delete) application for managing a list of products. Users can add, update, and delete products, as well as search for specific products.
 
